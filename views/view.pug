@@ -1,0 +1,16 @@
+//
+   Created by davidhong on 28/04/2017.
+doctype html
+html(lang="en")
+    head
+        meta(charset='utf-8')
+        title= pageTitle
+    body
+        h1 server side node js
+        ul
+            each topic in topics
+                li
+                    a(href='/topic/'+topic)= topic
+        article
+            h2= title
+            h3= description

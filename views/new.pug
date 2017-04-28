@@ -1,0 +1,27 @@
+//
+   Created by davidhong on 27/04/2017.
+doctype html
+html(lang="en")
+    head
+        meta(charset='utf-8')
+        title= pageTitle
+        script(type='text/javascript').
+            if (foo) bar(1 + 5)
+    body
+        form(action='/topic' method="post")
+            p
+                input(type='text' name='title' placeholder='title')
+            p
+                textarea(name='description')
+            p
+                input(type='submit')
+
+        h1 Pug - node template engine
+        #container.col
+            if youAreUsingPug
+                p You are amazing
+            else
+                p Get on it!
+            p.
+                Pug is a terse and simple templating language with a
+                strong focus on performance and powerful features.
