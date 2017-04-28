@@ -1,0 +1,30 @@
+{
+  "name": "mogakko-checkin",
+  "version": "1.0.0",
+  "description": "mogakko web based check-in",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taehwanhong/mogakko-checkin.git"
+  },
+  "keywords": [
+    "mogakko"
+  ],
+  "author": "David Hong",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/taehwanhong/mogakko-checkin/issues"
+  },
+  "homepage": "https://github.com/taehwanhong/mogakko-checkin#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "express-generator": "^4.15.0",
+    "lodash": "^4.17.4",
+    "nodemon": "^1.11.0",
+    "pug": "^2.0.0-beta.12"
+  }
+}
