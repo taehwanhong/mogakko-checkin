@@ -14,13 +14,42 @@ const pug = require('pug');
 const bodyParser = require('body-parser');
 const fs = require('fs');//file system
 
+// multer
+const multer = require('multer');
+const _storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+    }
+})
+const upload = multer({ storage: _storage })//upload destination setting
+
 
 app.set('views','./views');
 app.set('view engine', 'pug');
+app.use('/', function(req, res){
+    res.render('maptest');
+})
 
+app.use('/user', express.static('uploads'));
 app.use(bodyParser.urlencoded({extended:false}));
 
 app.locals.pretty = true;
+
+// upload route
+app.get('/upload', function(req, res){
+   res.render('upload');
+});
+
+// multer upload
+app.post('/upload', upload.single('userfile'), function(req, res){
+
+
+    res.send('uploaded: '+req.file.filename);
+
+});
 
 // topic - new route
 app.get('/topic/new', function (req, res) {
@@ -50,37 +79,7 @@ app.get(['/topic', '/topic/:id'], function(req, res) {
     })
 });
 
-// app.get('/topic/:id', function(req, res){
-//     let id = req.params.id;
-//
-//     fs.readdir('data', function (err, files) {
-//         if(err){
-//             console.log(err);
-//             res.status(500).send('Internal Server Error');
-//         }
-//         fs.readFile('data/'+id, 'utf8', function(err, data){
-//             if(err){
-//                 console.log(err);
-//                 res.status(500).send('internal server err');
-//             }
-//             res.render('view', {title:id, topics:files, description:data});
-//         })
-//     })
-// })
-
-app.post('/topic', function (req, res) {
-    let title = req.body.title;
-    let description = req.body.description;
-    fs.writeFile('data/'+ title, description, function(err){
-        if(err){
-        console.log(err);
-        res.status(500).send('internal server error');
-        }
-        res.send("post success" );
-    });
-
-})
-
+//server start at 3000 localhost
 app.listen(3000, function () {
     console.log("run server at port 3000");
 })
